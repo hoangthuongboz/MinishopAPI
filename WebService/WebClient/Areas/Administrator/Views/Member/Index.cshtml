@@ -1,0 +1,29 @@
+﻿@model List<Member>
+@{
+    ViewData["Title"] = "ManagerMember";
+}
+    <link href="/css/style.css" rel="stylesheet" />
+<h1>Index</h1>
+<a href="/administrator/member/create">Create</a>
+<table>
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Manager Roles</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Username</td>
+                <td>@item.Email</td>
+                <td>
+                    <a href="/administrator/member/role/@item.Id">Roles</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

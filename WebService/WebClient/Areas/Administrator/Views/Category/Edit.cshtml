@@ -1,0 +1,22 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+<div asp-validation-summary="All"></div>
+<form method="post">
+    <input type="hidden" asp-for="Id" />
+    <p>
+        <label>Name</label>
+        <input type="text" asp-for="Name" />
+    </p>
+    <p>
+        <label>Description</label>
+        <textarea asp-for="Description"></textarea>
+    </p>
+    <p>
+        <button>Save</button>
+    </p>
+</form>
+

@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+    Layout = "_LayoutHome";
+    ViewData["Title"] = "Detail";
+}
+
+<div>
+    <table>
+        <tr>
+            <td>
+                <h2>@Model.Name</h2>
+                <div>
+                    <img src="/upload/@Model.ImageUrl" style="width:250px"/>
+                </div>
+            </td>
+            <td>
+                <form action="/cart/create" method="post">
+                    <input type="hidden" name="productid" value="@Model.Id" />
+                    <input type="number" name="quantity" value="1" min="1" max="10" style="font-size:20px; width:10%; border: 1px solid #808080"/>
+                    <button style="border-radius:4px; font-size:20px; padding: 3px 10px; background-color: LightSalmon;">Add Cart</button>
+                </form>
+                <p>Price: <b>@Html.FormatValue(Model.Price, "{0:$#,##}")</b></p>
+                <p>Quantity: @Model.Quantity</p>
+                <p>Description: @Model.Description</p>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+    <h3>Product Relation</h3>
+    <partial name="ViewCategory" model="Model.Relation" />
+</div>

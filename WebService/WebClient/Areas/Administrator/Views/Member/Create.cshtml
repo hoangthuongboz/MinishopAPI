@@ -1,0 +1,28 @@
+﻿@model Member
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+<div asp-validation-summary="All"></div>
+<form method="post">
+    <p>
+        <label asp-for="Username"></label>
+        <input type="text" name="Username" />
+        <span asp-validation-for="Username"></span>
+    </p>
+    <p>
+        <label asp-for="Password"></label>
+        <input type="text" name="Password" />
+        <span asp-validation-for="Password"></span>
+    </p>
+    <p>
+        <label asp-for="Email"></label>
+        <input type="text" name="Email" />
+        <span asp-validation-for="Email"></span>
+    </p>
+    <p>
+        <button>SignUp</button>
+    </p>
+</form>
+

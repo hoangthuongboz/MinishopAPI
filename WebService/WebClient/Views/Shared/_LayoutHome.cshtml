@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="/css/home.css" rel="stylesheet" />
+    <link href="/css/all.css" rel="stylesheet" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="/js/js.js"></script>
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.green.min.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="contact">
+                <h3 class="abc">Hỗ trợ</h3>
+                <h3><i class="fas fa-phone-volume"></i>(+84)372704074</h3>
+                <h3><i class="fas fa-envelope"></i>Admin@gmail.com</h3>
+            </div>
+            <div class="logo">
+                <h1><a href="/">MINISHOP</a></h1>
+            </div>
+            <div class="signInUp">
+                <ul class="menu">
+                    <li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+                            <label>Welcome: @User.Identity.Name</label>
+                            <ul>
+                                @if (User.IsInRole("Administrator") || User.IsInRole("Staff"))
+                                {
+                                    <li>
+                                        <a class="colorGrey" href="/administrator"><i class="fas fa-address-card"></i>Quản lý sản phẩm</a>
+                                    </li>
+                                    <li>
+                                        <a class="colorGrey" href="/auth"><i class="fas fa-users"></i>Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="colorGrey" href="/auth/signout"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="colorGrey" href="/"><i class="fa fa-shopping-bag"></i>Thông tin giao dịch</a>
+                                    </li>
+                                    <li>
+                                        <a class="colorGrey" href="/auth"><i class="fas fa-users"></i>Profile</a>
+                                    </li>
+                                    <li>
+                                        <a class="colorGrey" href="/auth/signout"><i class="fas fa-sign-out-alt"></i>LogOut</a>
+                                    </li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <a class="colorGrey" href="/auth/signup"><i class="fas fa-sign-in-alt"></i>SignUp</a>
+                            <a class="colorGrey" href="/auth/signin"><i class="fas fa-user-plus"></i>Login</a>
+                        }
+                    </li>
+                    <li>
+                        <a class="colorGrey" href="/cart"><i class="fas fa-shopping-cart"></i>Cart</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="hd-search">
+        <form action="/home/search">
+            <input type="search" name="q" value="@Context.Request.Query["q"]" />
+            <button>Search</button>
+        </form>
+    </div>
+
+    <main>
+        <header>
+            <h1><a href="/">TRANG CHỦ</a></h1>
+            <div class="dropdown">
+                <h1><a href="">SẢN PHẨM</a></h1>
+                <ul>
+                    @foreach (var item in ViewBag.categories)
+                    {
+                        <li>
+                            <a href="/home/browser/@item.Id">@item.Name</a>
+                        </li>
+                    }
+                </ul>
+            </div>
+            <h1><a href="/home/about">ABOUT US</a></h1>
+        </header>
+
+        <div class="banner">
+            <div class="container">
+                <div class="owl-carousel owl-theme sliderBanner">
+                    <div class="slider">
+                        <img src="~/upload/banner2.jpg" alt="" />
+                    </div>
+                    <div class="slider">
+                        <img src="~/upload/banner-mid.jpg" alt="" />
+                    </div>
+                    <div class="slider">
+                        <img src="~/upload/banner1.jpg" alt="" />
+                    </div>
+                    <div class="slider">
+                        <img src="~/upload/banner3.jpg" alt="" />
+                    </div>
+                    <div class="slider">
+                        <img src="~/upload/banner4.jpg" alt="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="category-content">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-item1 row">
+                <div class="contact col-xs-12 col-md-6">
+                    <div class="content col-xs-6">
+                        <h2>Producer</h2>
+                        <p>Hoàng Thương</p>
+                    </div>
+                    <div class="content col-xs-6">
+                        <h2>Email</h2>
+                        <a href="/">hoangthuongboz@gmail.com</a>
+                    </div>
+                </div>
+                <div class="contact col-xs-12 col-md-6">
+                    <div class="content col-xs-6">
+                        <h2>Phone</h2>
+                        <a href="">0372704074</a>
+                    </div>
+                    <div class="content col-xs-6">
+                        <h2>Fax</h2>
+                        <a href="">+ 000 1111 0000</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-item2 row">
+                <div class="item-child col-xs-12 col-md-4">
+                    <a href="/">
+                        <i class="fab fa-facebook-square"
+                           style="color: #3b5998; padding-right: 10px;"></i>
+                    </a>
+                    <a href="/">
+                        <i class="fab fa-instagram"
+                           style="color: #e1306c; padding-right: 10px;"></i>
+                    </a>
+                    <a href="/">
+                        <i class="fab fa-twitter-square" style="color: #1da1f2;"></i>
+                    </a>
+                </div>
+                <div class="item-child col-xs-12 col-md-4">
+                    <a href=""
+                       style="
+                color: rgb(160, 160, 160);
+                font-size: 15px;
+                padding-right: 10px;
+              ">Privacy policy</a>
+                    <a href="" style="color: rgb(160, 160, 160); font-size: 15px;">Term of service</a>
+                </div>
+                <div class="item-child col-xs-12 col-md-4">
+                    <p>
+                        © 2019 Shot pic. All rights reserved | Designed by Son Nguyen
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>      
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="/js/sliderManin.js"></script>
+</html>

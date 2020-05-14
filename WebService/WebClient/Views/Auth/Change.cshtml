@@ -1,0 +1,49 @@
+﻿@model Member
+@{
+    ViewData["Title"] = "Change";
+}
+
+
+<div asp-validation-summary="All"></div>
+<form method="post">
+    <h1>Change Password</h1>
+    <div class="input">
+        <input placeholder="Username" type="text" name="Username" value="@User.Identity.Name" />
+        <input placeholder="Old Password" type="password" name="OldPassword" />
+        <input placeholder="New Password" type="password" name="Password" />
+        <input type="hidden" name="Email" value="@User.Identity.Name" />
+    </div>
+    <button>Change Password</button>
+</form>
+
+@*<table>
+    <tr>
+        <td>Username</td>
+        <td>
+            <input type="text" name="Username" value="@User.Identity.Name" />
+        </td>
+    </tr>
+    <tr>
+        <td>Old Password</td>
+        <td>
+            <input type="password" name="OldPassword" />
+        </td>
+    </tr>
+    <tr>
+        <td>New Password</td>
+        <td>
+            <input type="password" name="Password" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="hidden" name="Email" value="@User.Identity.Name" />
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button>Change Password</button>
+        </td>
+    </tr>
+</table>*@

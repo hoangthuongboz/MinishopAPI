@@ -1,0 +1,18 @@
+﻿@using WebClient
+@model List<Product>
+@addTagHelper *,WebClient
+@{
+    Layout = "_LayoutHome";
+    ViewData["Title"] = "Search";
+}
+
+@*<h1>Search</h1>*@
+@*<form action="/home/search">
+        <input type="search" name="q" value="@Context.Request.Query["q"]" />
+        <button>Search</button>
+    </form>*@
+
+<h3>Tìm thấy @ViewBag.total sản phẩm!</h3>
+<br />
+<pagination url="/home/search/{0}?q=@Context.Request.Query["q"]" size="8" total="@ViewBag.total" page="@ViewContext.GetId("id")"></pagination>
+<partial name="ViewCategory" model="Model" />

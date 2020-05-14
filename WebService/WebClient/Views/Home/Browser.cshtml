@@ -1,0 +1,12 @@
+﻿@model Category
+@{
+    Layout = "_LayoutHome";
+    ViewData["Title"] = "Browser";
+}
+
+<div>
+    <h1>@Model.Name</h1>
+    <h3 style="margin:25px 0">@Model.Description</h3>
+    <partial name="ViewCategory" model="Model.Products" />
+</div>
+

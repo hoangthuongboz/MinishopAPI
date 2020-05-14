@@ -1,0 +1,51 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "ManagerProduct";
+}
+    <link href="/css/style.css" rel="stylesheet" />
+<h2>Manager Product</h2>
+<a href="/administrator/product/create">Create</a>
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>CategoryId</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>ImageUrl</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.CategoryId</td>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.Quantity</td>
+                <td>
+                    @if (item.ImageUrl != null)
+                    {
+                        <img src="/upload/@item.ImageUrl" width="200" />
+                    }
+                </td>
+                <td>
+                    <a href="/administrator/product/edit/@item.Id">
+                        <img src="/images/edit.png" />
+                    </a>
+                </td>
+                <td>
+                    <a href="/administrator/product/delete/@item.Id">
+                        <img src="/images/trash.png" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

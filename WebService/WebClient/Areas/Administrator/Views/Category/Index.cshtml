@@ -1,0 +1,43 @@
+﻿@model List<Category> 
+@{
+    ViewData["Title"] = "Index";
+}
+    <link href="/css/style.css" rel="stylesheet" />
+<h1>Category Manager</h1>
+<a href="/administrator/category/create">Create</a>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td><a href="/administrator/category/edit/@item.Id">
+                        <img src="~/images/edit.png" />
+                    </a>
+                </td>
+                <td><a class="del" href="/administrator/category/delete/@item.Id">
+                        <img src="~/images/trash.png" />
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    var b = document.getElementsByClassName('del');
+    for (var i = 0; i < b.length; i++) {
+        b[i].onclick = function () {
+            return confirm('Are you sure delete?');
+        }
+    }
+</script>
+
